@@ -25,7 +25,6 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import slimeknights.tconstruct.library.utils.TinkerUtil;
 
 public class IblisHeadshotsEventHandler {
 
@@ -113,11 +112,12 @@ public class IblisHeadshotsEventHandler {
 			if (!headgear.isEmpty()) {
 				float headGearDamageAbsorbMultiplier = IblisItemUtils.getHeadgearProtection(headgear);
 				multiplier = 1.0f + Math.max(multiplier - 1.0f, 0.0f) * headGearDamageAbsorbMultiplier;
-				if (Loader.isModLoaded("tconstruct")) {
+				if (Loader.isModLoaded("tconstruct") && Loader.isModLoaded("conarm")) {
 					if (headgear.getItem().getRegistryName() == ConstructsRegistry.helmet.getRegistryName() && victim instanceof EntityPlayer) {
 						EntityPlayer player = (EntityPlayer) victim;
 						ArmorHelper.damageArmor(headgear, source, (int) ((victim.world.rand.nextFloat()*0.5 + 1.0F) * damage * damageToItemMultiplier), player);
 					} else {
+//						ArmorHelper.damageArmor(headgear, source, (int) ((victim.world.rand.nextFloat()*0.5 + 1.0F) * damage * damageToItemMultiplier), (EntityPlayer) );
 						headgear.damageItem((int) ((victim.world.rand.nextFloat()*0.5 + 1.0F) * damage * damageToItemMultiplier), victim);
 					}
 				} else {
