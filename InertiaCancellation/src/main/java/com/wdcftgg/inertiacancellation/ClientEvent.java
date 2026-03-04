@@ -9,17 +9,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import static com.wdcftgg.inertiacancellation.init.RegistryHandler.MY_HOTKEY;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(value = Side.CLIENT)
 public class ClientEvent {
 
     @SubscribeEvent
     public static void onKeyPressed(InputEvent.KeyInputEvent event) {
         if (MY_HOTKEY.isPressed()) {
-            System.out.println("adweawd");
             EntityPlayer player = Minecraft.getMinecraft().player;
             if (player != null) {
                 NBTTagCompound persistent = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);

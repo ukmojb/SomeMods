@@ -1,6 +1,5 @@
 package com.wdcftgg.inertiacancellation;
 
-import com.wdcftgg.inertiacancellation.init.RegistryHandler;
 import com.wdcftgg.inertiacancellation.network.PacketHandler;
 import com.wdcftgg.inertiacancellation.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
@@ -8,7 +7,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = InertiaCancellation.MODID, name = InertiaCancellation.NAME, version = InertiaCancellation.VERSION)
@@ -33,7 +31,6 @@ public class InertiaCancellation {
 
         proxy.onPreInit();
 
-        RegistryHandler.preInitRegistries(event);
 
     }
 
@@ -44,7 +41,6 @@ public class InertiaCancellation {
 
         PacketHandler.init();
 
-        RegistryHandler.InitReg();
 
     }
 
@@ -52,14 +48,9 @@ public class InertiaCancellation {
     public void postInit(FMLPostInitializationEvent event) {
         proxy.onPostInit();
 
-        RegistryHandler.postInitReg();
     }
 
 
-    @Mod.EventHandler
-    public static void serverInit(FMLServerStartingEvent event) {
-        RegistryHandler.serverRegistries(event);
-    }
 
     public static void LogWarning(String str, Object... args) {
         logger.warn(String.format(str, args));

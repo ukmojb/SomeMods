@@ -2,6 +2,7 @@ package com.wdcftgg.inertiacancellation.proxy;
 
 
 import com.wdcftgg.inertiacancellation.init.ParticleInit;
+import com.wdcftgg.inertiacancellation.init.RegistryHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -26,6 +27,8 @@ public class ClientProxy extends CommonProxy {
 
 	public void onInit(){
 		super.onInit();
+
+		RegistryHandler.InitReg();
 //		MinecraftForge.EVENT_BUS.register(new EventLossSpatialSense());
 	}
 
